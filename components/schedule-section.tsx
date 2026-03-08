@@ -1,13 +1,13 @@
-import { Clock, MapPin, Train } from "lucide-react"
-import { DancingWave } from "@/components/dancing-wave"
+import { Clock, MapPin, Train } from "lucide-react";
+import { DancingWave } from "@/components/dancing-wave";
 
 const schedule = [
   {
     time: "18:00h",
     classes: [
-      { day: "Lunes", style: "Dembow / Reggaeton", teacher: "Halima" },
+      { day: "Lunes", style: "Reggaetón / Dembow", teacher: "Halima" },
       { day: "Martes", style: "Booty Whining", teacher: "Nerea" },
-      { day: "Miercoles", style: "Dancehall", teacher: "Halima" },
+      { day: "Miércoles", style: "Dancehall", teacher: "Halima" },
       { day: "Jueves", style: "Female Dancehall", teacher: "Nerea" },
     ],
   },
@@ -16,7 +16,7 @@ const schedule = [
     classes: [
       { day: "Lunes", style: "Dancehall", teacher: "Halima" },
       { day: "Martes", style: "Twerk", teacher: "Halima" },
-      { day: "Miercoles", style: "Female Dancehall", teacher: "Nerea" },
+      { day: "Miércoles", style: "Female Dancehall", teacher: "Nerea" },
       { day: "Jueves", style: "Booty Whining", teacher: "Nerea" },
     ],
   },
@@ -24,14 +24,14 @@ const schedule = [
     time: "21:00h",
     classes: [
       { day: "Lunes", style: "Female Dancehall", teacher: "Nerea" },
-      { day: "Martes", style: "Compania", teacher: "Halima" },
-      { day: "Miercoles", style: "Booty Whining", teacher: "Nerea" },
-      { day: "Jueves", style: "Dembow / Reggaeton", teacher: "Halima" },
+      { day: "Martes", style: "Compañía (grupo cerrado)", teacher: "Halima" },
+      { day: "Miércoles", style: "Booty Whining", teacher: "Nerea" },
+      { day: "Jueves", style: "Reggaetón / Dembow", teacher: "Halima" },
     ],
   },
-]
+];
 
-const days = ["Lunes", "Martes", "Miercoles", "Jueves"]
+const days = ["Lunes", "Martes", "Miércoles", "Jueves"];
 
 export function ScheduleSection() {
   return (
@@ -49,22 +49,27 @@ export function ScheduleSection() {
             Nuestro horario
           </h2>
           <p className="text-muted-foreground text-center max-w-xl leading-relaxed">
-            Clases de lunes a jueves con tres franjas horarias. Todas las clases duran 1 hora y media.
+            Todas las clases son multinivel y duran 1 hora y media. La clase de
+            Compañía de los martes a las 21:00h es un grupo cerrado.
           </p>
         </div>
 
         {/* Desktop Schedule Table */}
         <div className="hidden md:block overflow-x-auto">
-          <div className="min-w-[700px]">
+          <div className="min-w-175">
             {/* Header Row */}
             <div className="grid grid-cols-5 gap-3 mb-4">
               <div className="flex items-center gap-2 px-4 py-3">
                 <Clock className="h-4 w-4 text-primary" />
-                <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">Hora</span>
+                <span className="text-xs uppercase tracking-wider text-muted-foreground font-semibold">
+                  Hora
+                </span>
               </div>
               {days.map((day) => (
                 <div key={day} className="text-center px-4 py-3">
-                  <span className="text-sm uppercase tracking-wider text-foreground font-bold">{day}</span>
+                  <span className="text-sm uppercase tracking-wider text-foreground font-bold">
+                    {day}
+                  </span>
                 </div>
               ))}
             </div>
@@ -74,18 +79,29 @@ export function ScheduleSection() {
               <div key={block.time} className="grid grid-cols-5 gap-3 mb-3">
                 {/* Time */}
                 <div className="flex items-center justify-center rounded-xl bg-primary px-4 py-5">
-                  <span className="text-lg font-bold text-primary-foreground">{block.time}</span>
+                  <span className="text-lg font-bold text-primary-foreground">
+                    {block.time}
+                  </span>
                 </div>
 
                 {/* Classes */}
                 {block.classes.map((cls) => (
                   <div
                     key={`${block.time}-${cls.day}`}
-                    className="rounded-xl bg-card border border-border p-4 flex flex-col items-center justify-center gap-2 hover:border-primary/50 transition-colors"
+                    className={`rounded-xl border p-4 flex flex-col items-center justify-center gap-2 transition-colors ${
+                      cls.style.includes("grupo cerrado")
+                        ? "bg-card/60 border-primary/50"
+                        : "bg-card border-border hover:border-primary/50"
+                    }`}
                   >
                     <span className="text-sm font-bold text-foreground text-center leading-tight">
                       {cls.style}
                     </span>
+                    {cls.style.includes("grupo cerrado") ? (
+                      <span className="text-[10px] uppercase tracking-wider bg-primary/15 text-primary px-2 py-1 rounded-md font-semibold">
+                        Cerrado
+                      </span>
+                    ) : null}
                     <span className="text-xs bg-background px-3 py-1 rounded-md text-primary font-semibold">
                       {cls.teacher}
                     </span>
@@ -110,7 +126,11 @@ export function ScheduleSection() {
                 {block.classes.map((cls) => (
                   <div
                     key={`${block.time}-${cls.day}-mobile`}
-                    className="rounded-xl bg-card border border-border p-4 flex flex-col gap-2"
+                    className={`rounded-xl border p-4 flex flex-col gap-2 ${
+                      cls.style.includes("grupo cerrado")
+                        ? "bg-card/60 border-primary/50"
+                        : "bg-card border-border"
+                    }`}
                   >
                     <span className="text-[11px] uppercase tracking-wider text-primary font-semibold">
                       {cls.day}
@@ -118,6 +138,11 @@ export function ScheduleSection() {
                     <span className="text-sm font-bold text-foreground leading-tight">
                       {cls.style}
                     </span>
+                    {cls.style.includes("grupo cerrado") ? (
+                      <span className="text-[10px] uppercase tracking-wider bg-primary/15 text-primary px-2 py-1 rounded-md font-semibold w-fit">
+                        Grupo cerrado
+                      </span>
+                    ) : null}
                     <span className="text-xs text-muted-foreground">
                       {cls.teacher}
                     </span>
@@ -136,8 +161,10 @@ export function ScheduleSection() {
               <MapPin className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <p className="text-foreground font-bold">Calle Magdalena 7, Madrid</p>
-              <p className="text-sm text-muted-foreground">{"Bambu, Espacio Tierra"}</p>
+              <p className="text-foreground font-bold">
+                Calle Conde de Vistahermosa, 9
+              </p>
+              <p className="text-sm text-muted-foreground">{"Fedriani"}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -145,11 +172,11 @@ export function ScheduleSection() {
               <Train className="h-5 w-5 text-primary" />
             </div>
             <p className="text-sm text-muted-foreground">
-              Metro: Tirso de Molina, Sol, La Latina, Anton Martin
+              Metro: Marqués de Vadillo. Bus: 116, 23, 34, 62, E1
             </p>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

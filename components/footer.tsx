@@ -14,7 +14,7 @@ export function Footer() {
               className="h-20 w-[60%] object-contain"
             />
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Nuestras clases estan hechas para disfrutar, aprender, compartir,
+              Nuestras clases están hechas para disfrutar, aprender, compartir,
               trabajar la autoestima, cuerpo, mente y alma mientras bailamos.
             </p>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
                 { href: "#estilos", label: "Estilos de Baile" },
                 { href: "#horarios", label: "Horarios" },
                 { href: "#precios", label: "Precios" },
-                { href: "#galeria", label: "Galeria" },
+                { href: "#galeria", label: "Galería" },
                 { href: "#inicio", label: "Reservar Clase" },
               ].map((link) => (
                 <a
@@ -70,9 +70,12 @@ export function Footer() {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2">
                     <DancingWave width={40} />
-                    <span>Calle Magdalena 7, Madrid</span>
+                    <span>Calle Conde de Vistahermosa, 9</span>
                   </div>
-                  <span>{"Bambu, Espacio Tierra"}</span>
+                  <span>{"Fedriani"}</span>
+                  <span>
+                    Metro: Marqués de Vadillo. Bus: 116, 23, 34, 62, E1
+                  </span>
                 </div>
               </div>
             </div>

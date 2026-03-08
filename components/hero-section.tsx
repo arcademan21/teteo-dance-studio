@@ -5,12 +5,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { DancingWave } from "@/components/dancing-wave";
+import { reservaFormSchema } from "@/lib/reservas/schema";
 
 const danceStyles = [
   "Dancehall",
   "Twerk",
   "Booty Whining",
-  "Dembow / Reggaeton",
+  "Reggaetón / Dembow",
   "Female Dancehall",
 ];
 
@@ -33,6 +34,16 @@ export function HeroSection() {
     }
 
     setSubmitError("");
+
+    const parsed = reservaFormSchema.safeParse(formData);
+    if (!parsed.success) {
+      const firstIssue = parsed.error.issues[0];
+      setSubmitError(
+        firstIssue?.message || "Revisa los campos del formulario.",
+      );
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -90,7 +101,7 @@ export function HeroSection() {
             <div className="flex items-center gap-3">
               <DancingWave width={60} />
               <span className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                Madrid &middot; Calle Magdalena 7
+                Madrid &middot; Calle Conde de Vistahermosa, 9
               </span>
             </div>
 
@@ -106,8 +117,8 @@ export function HeroSection() {
             </h1>
 
             <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
-              Clases de Dancehall, Twerk, Booty Whining, Dembow y Reggaeton con
-              las mejores profesoras de Madrid. Grupos reducidos de 15 personas.
+              Clases de Dancehall, Twerk, Booty Whining, Reggaetón / Dembow y
+              Female Dancehall para disfrutar, soltar y conectar con tu energía.
             </p>
 
             <div className="flex flex-wrap gap-3 pt-2">

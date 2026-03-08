@@ -9,7 +9,7 @@ const navLinks = [
   { href: "#estilos", label: "Estilos" },
   { href: "#horarios", label: "Horarios" },
   { href: "#precios", label: "Precios" },
-  { href: "#galeria", label: "Galeria" },
+  { href: "#galeria", label: "Galería" },
   { href: "#contacto", label: "Contacto" },
 ];
 

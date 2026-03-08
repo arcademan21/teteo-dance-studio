@@ -1,5 +1,5 @@
-import { Check, Info } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Check, Info } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const plans = [
   {
@@ -34,7 +34,7 @@ const plans = [
     hours: "15 horas",
     highlight: false,
     features: [
-      "Valido hasta 2 meses",
+      "Válido hasta 2 meses",
       "Elige cualquier clase y estilo",
       "Flexibilidad total de horarios",
     ],
@@ -46,18 +46,23 @@ const plans = [
     hours: "30 horas",
     highlight: false,
     features: [
-      "Valido hasta 3 meses",
+      "Válido hasta 3 meses",
       "Elige cualquier clase y estilo",
       "Flexibilidad total de horarios",
       "Mejor precio por clase",
     ],
   },
-]
+];
 
 const extras = [
-  { name: "Bono Mensual Ilimitado", price: "180", note: "8 plazas disponibles" },
-  { name: "Clase Suelta", price: "18", note: "Pago por sesion individual" },
-]
+  {
+    name: "Bono Mensual Ilimitado",
+    price: "180",
+    note: "8 plazas disponibles",
+  },
+  { name: "Clase de prueba", price: "5", note: "Nueva clase de prueba" },
+  { name: "Clase Suelta", price: "18", note: "Pago por sesión individual" },
+];
 
 export function PricingSection() {
   return (
@@ -75,7 +80,8 @@ export function PricingSection() {
             Elige tu plan
           </h2>
           <p className="text-muted-foreground text-center max-w-xl leading-relaxed">
-            Todas nuestras clases duran 1 hora y media, dando espacio y tiempo para una clase de calidad y disfrute.
+            Todas nuestras clases duran 1 hora y media, dando espacio y tiempo
+            para una clase de calidad y disfrute.
           </p>
         </div>
 
@@ -100,7 +106,9 @@ export function PricingSection() {
 
               {/* Plan Name */}
               <div>
-                <h3 className="text-lg font-bold text-foreground">{plan.name}</h3>
+                <h3 className="text-lg font-bold text-foreground">
+                  {plan.name}
+                </h3>
                 <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-md font-medium">
                   {plan.hours}
                 </span>
@@ -108,10 +116,14 @@ export function PricingSection() {
 
               {/* Price */}
               <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-bold text-foreground">{plan.price}</span>
+                <span className="text-4xl font-bold text-foreground">
+                  {plan.price}
+                </span>
                 <span className="text-xl text-foreground">{"€"}</span>
                 {plan.period && (
-                  <span className="text-sm text-muted-foreground">{plan.period}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {plan.period}
+                  </span>
                 )}
               </div>
 
@@ -120,7 +132,9 @@ export function PricingSection() {
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2">
                     <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                    <span className="text-sm text-muted-foreground">{feature}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {feature}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -141,7 +155,7 @@ export function PricingSection() {
         </div>
 
         {/* Extras */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {extras.map((extra) => (
             <div
               key={extra.name}
@@ -149,10 +163,14 @@ export function PricingSection() {
             >
               <div className="flex flex-col gap-1">
                 <span className="text-foreground font-bold">{extra.name}</span>
-                <span className="text-xs text-muted-foreground">{extra.note}</span>
+                <span className="text-xs text-muted-foreground">
+                  {extra.note}
+                </span>
               </div>
               <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-bold text-primary">{extra.price}</span>
+                <span className="text-3xl font-bold text-primary">
+                  {extra.price}
+                </span>
                 <span className="text-lg text-primary">{"€"}</span>
               </div>
             </div>
@@ -164,14 +182,20 @@ export function PricingSection() {
           <Info className="h-5 w-5 text-primary shrink-0 mt-0.5" />
           <div className="flex flex-col gap-2">
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Mensualidad:</strong> Tu plaza queda reservada en exclusiva. No necesitas reservar cada semana. Si un dia no puedes asistir, puedes recuperar la clase en otro horario avisando antes de las 14:00h.
+              <strong className="text-foreground">Mensualidad:</strong> Tu plaza
+              queda reservada en exclusiva. No necesitas reservar cada semana.
+              Si un día no puedes asistir, puedes recuperar la clase en otro
+              horario avisando antes de las 14:00h.
             </p>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              <strong className="text-foreground">Bonos:</strong> No garantizan plaza fija. Puedes asistir a cualquier clase eligiendo dia y estilo. Reserva hasta las 14:00h del mismo dia. Cancela como maximo 12h antes del inicio.
+              <strong className="text-foreground">Bonos:</strong> No garantizan
+              plaza fija. Puedes asistir a cualquier clase eligiendo día y
+              estilo. Reserva hasta las 14:00h del mismo día. Cancela como
+              máximo 12h antes del inicio.
             </p>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

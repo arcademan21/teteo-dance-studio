@@ -2,7 +2,7 @@ import { Play } from "lucide-react";
 
 // Video placeholders - replace src with real video URLs when available
 const videos = [
-  { id: 1, src: "", poster: "", title: "Coreografia Dancehall" },
+  { id: 1, src: "", poster: "", title: "Coreografía Dancehall" },
   { id: 2, src: "", poster: "", title: "Clase de Twerk" },
   { id: 3, src: "", poster: "", title: "Booty Whining Session" },
 ];
@@ -14,7 +14,7 @@ export function GallerySection() {
         {/* Section Header */}
         <div className="flex flex-col items-center gap-4 mb-16">
           <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium">
-            Galeria
+            Galería
           </span>
           <h2
             className="text-4xl md:text-5xl lg:text-6xl uppercase text-center text-foreground tracking-tight"
@@ -23,7 +23,7 @@ export function GallerySection() {
             Nuestras clases
           </h2>
           <p className="text-muted-foreground text-center max-w-xl leading-relaxed">
-            Espacios amplios, energia pura y una comunidad increible. Asi se
+            Espacios amplios, energía pura y una comunidad increíble. Así se
             vive el baile en Teteo Studio.
           </p>
         </div>
@@ -48,12 +48,12 @@ export function GallerySection() {
           <div className="relative rounded-2xl overflow-hidden group">
             <img
               src="/images/galeria-coreografia-pie.jpeg"
-              alt="Alumnas practicando coreografia de pie en Teteo Studio"
+              alt="Alumnas practicando coreografía de pie en Teteo Studio"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
               <span className="text-foreground font-semibold text-sm">
-                Coreografia
+                Coreografía
               </span>
             </div>
           </div>
@@ -91,7 +91,7 @@ export function GallerySection() {
         <div className="mt-20">
           <div className="flex flex-col items-center gap-4 mb-12">
             <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium">
-              Videos
+              Vídeos
             </span>
             <h3
               className="text-3xl md:text-4xl uppercase text-center text-foreground tracking-tight"
@@ -105,7 +105,7 @@ export function GallerySection() {
             {videos.map((video) => (
               <div
                 key={video.id}
-                className="relative aspect-[9/16] md:aspect-video rounded-2xl overflow-hidden bg-card border border-border group"
+                className="relative aspect-9/16 md:aspect-video rounded-2xl overflow-hidden bg-card border border-border group"
               >
                 {video.src ? (
                   <video
@@ -128,7 +128,7 @@ export function GallerySection() {
                       {video.title}
                     </span>
                     <span className="text-xs text-muted-foreground/60">
-                      Proximamente
+                      Próximamente
                     </span>
                   </div>
                 )}
@@ -144,10 +144,10 @@ export function GallerySection() {
               className="text-3xl text-primary"
               style={{ fontFamily: "var(--font-anton)" }}
             >
-              15-17
+              MULTI
             </span>
             <span className="text-sm text-muted-foreground">
-              Aforo maximo por clase para un aprendizaje personalizado
+              Clases multinivel para aprender y disfrutar a tu ritmo
             </span>
           </div>
           <div className="rounded-2xl bg-card border border-border p-6 flex flex-col gap-3 text-center">
@@ -158,7 +158,7 @@ export function GallerySection() {
               1:30h
             </span>
             <span className="text-sm text-muted-foreground">
-              Duracion de cada clase para una experiencia completa
+              Duración de cada clase para una experiencia completa
             </span>
           </div>
           <div className="rounded-2xl bg-card border border-border p-6 flex flex-col gap-3 text-center">
@@ -169,7 +169,7 @@ export function GallerySection() {
               3 SEM
             </span>
             <span className="text-sm text-muted-foreground">
-              Bloques de trabajo: tecnica, coreografia y grabacion
+              Bloques de trabajo: técnica, coreografía y grabación
             </span>
           </div>
         </div>

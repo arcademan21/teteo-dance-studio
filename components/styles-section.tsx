@@ -1,37 +1,42 @@
-import { Music, Flame, Sparkles, Heart, Star } from "lucide-react"
+import { Music, Flame, Sparkles, Heart, Star } from "lucide-react";
 
 const styles = [
   {
     name: "Dancehall",
-    description: "Originario de Jamaica, este estilo lleno de energia combina movimientos explosivos con ritmos caribenos. Aprende pasos autenticos y coreografias que te haran vibrar.",
+    description:
+      "Es una cultura y estilo de baile nacido en Jamaica. Se caracteriza por su energía, musicalidad y fuerte presencia corporal, con pasos que reflejan la historia y el contexto social jamaicano. Más que un baile, es identidad, expresión y cultura.",
     icon: Music,
     teachers: ["Halima"],
   },
   {
     name: "Twerk",
-    description: "Trabaja el control corporal, la fuerza y la confianza con movimientos de aislamiento y bounce. Clases divertidas y empoderadoras para todos los niveles.",
+    description:
+      "Trabaja el control corporal, la fuerza y la confianza con movimientos de aislamiento y bounce. Clases divertidas y empoderadoras para todos los niveles.",
     icon: Flame,
     teachers: ["Halima"],
   },
   {
     name: "Booty Whining",
-    description: "Fusion de movimientos caribenos centrados en caderas y cintura. Un estilo sensual y potente que trabaja la flexibilidad y el groove natural.",
+    description:
+      "Fusión de movimientos centrados en caderas y cintura. Un estilo sensual y potente que te conecta con tu energía femenina y salvaje, trabajando técnica de movimiento, pasos y coreografía. Es un estilo para conectarte, liberarte y disfrutar bailando.",
     icon: Sparkles,
     teachers: ["Nerea"],
   },
   {
-    name: "Dembow / Reggaeton",
-    description: "Los ritmos urbanos latinos mas actuales. Aprende coreografias con actitud, flow y mucha energia. Perfecto para soltar y pasarla bien.",
+    name: "Reggaetón / Dembow",
+    description:
+      "Combina la fuerza y musicalidad del reggaetón con la energía explosiva del dembow dominicano. Trabajamos técnica, aislamientos, actitud y conexión con el ritmo, potenciando el flow y la seguridad de cada persona.",
     icon: Star,
     teachers: ["Halima"],
   },
   {
     name: "Female Dancehall",
-    description: "Una version del Dancehall con enfoque femenino y empoderado. Movimientos fluidos, actitud y mucha personalidad. Expresa tu lado mas fuerte.",
+    description:
+      "Una versión del Dancehall que representa y potencia el poder femenino. Se caracteriza por sus movimientos explosivos, fluidos y con mucha actitud. En clase trabajaremos pasos y coreografías para desarrollar la confianza con una misma y el disfrute de nuestro cuerpo/alma.",
     icon: Heart,
     teachers: ["Nerea"],
   },
-]
+];
 
 export function StylesSection() {
   return (
@@ -46,10 +51,11 @@ export function StylesSection() {
             className="text-4xl md:text-5xl lg:text-6xl uppercase text-center text-foreground tracking-tight"
             style={{ fontFamily: "var(--font-anton)" }}
           >
-            Encuentra tu ritmo
+            Teteo Studio: bailar para disfrutar, disfrutar para soltar
           </h2>
           <p className="text-muted-foreground text-center max-w-xl leading-relaxed">
-            5 estilos de baile urbano impartidos por profesoras con anos de experiencia. Grupos reducidos para un aprendizaje personalizado.
+            5 estilos de baile urbano impartidos por profesoras con años de
+            experiencia.
           </p>
         </div>
 
@@ -77,9 +83,14 @@ export function StylesSection() {
 
               {/* Teachers */}
               <div className="flex items-center gap-2 pt-2 border-t border-border">
-                <span className="text-[11px] uppercase tracking-wider text-muted-foreground">Profesora:</span>
+                <span className="text-[11px] uppercase tracking-wider text-muted-foreground">
+                  Profesora:
+                </span>
                 {style.teachers.map((t) => (
-                  <span key={t} className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md">
+                  <span
+                    key={t}
+                    className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md"
+                  >
                     {t}
                   </span>
                 ))}
@@ -89,5 +100,5 @@ export function StylesSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
