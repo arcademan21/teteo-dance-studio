@@ -1,13 +1,73 @@
-import { Play } from "lucide-react";
+"use client";
 
-// Video placeholders - replace src with real video URLs when available
+import { useState } from "react";
+import { Play } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+
+type GalleryPhoto = {
+  src: string;
+  alt: string;
+  title: string;
+};
+
+const VIDEO_BASE_URL =
+  "https://boundary-minimum-legend-stakeholders.trycloudflare.com";
+
 const videos = [
-  { id: 1, src: "", poster: "", title: "Coreografía Dancehall" },
-  { id: 2, src: "", poster: "", title: "Clase de Twerk" },
-  { id: 3, src: "", poster: "", title: "Booty Whining Session" },
+  {
+    id: 1,
+    src: `${VIDEO_BASE_URL}/Twerk-session-halima.mov`,
+    title: "Twerk Session - Halima",
+    gridClass: "col-span-2 row-span-2",
+  },
+  {
+    id: 2,
+    src: `${VIDEO_BASE_URL}/Female-Dancehall-halima.mov`,
+    title: "Female Dancehall - Halima",
+    gridClass: "",
+  },
+  {
+    id: 3,
+    src: `${VIDEO_BASE_URL}/Female-Dancehall-session-nerea.mov`,
+    title: "Female Dancehall Session - Nerea",
+    gridClass: "",
+  },
+  {
+    id: 4,
+    src: `${VIDEO_BASE_URL}/Dembow-Reggaeton.mov`,
+    title: "Dembow Reggaeton",
+    gridClass: "col-span-2",
+  },
+  {
+    id: 5,
+    src: `${VIDEO_BASE_URL}/Booty-Whinning.mov`,
+    title: "Booty Whinning",
+    gridClass: "col-span-2",
+  },
 ];
 
 export function GallerySection() {
+  const [playingVideos, setPlayingVideos] = useState<Record<number, boolean>>(
+    {},
+  );
+  const [hoveredVideoId, setHoveredVideoId] = useState<number | null>(null);
+  const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
+
+  const stopOtherVideos = (
+    currentId: number,
+    currentVideo: HTMLVideoElement | null,
+  ) => {
+    const allVideos = document.querySelectorAll("video");
+
+    allVideos.forEach((videoElement) => {
+      if (videoElement !== currentVideo && !videoElement.paused) {
+        videoElement.pause();
+      }
+    });
+
+    setPlayingVideos(() => ({ [currentId]: true }));
+  };
+
   return (
     <section id="galeria" className="py-24 lg:py-32 bg-muted">
       <div className="mx-auto max-w-7xl px-6">
@@ -31,7 +91,17 @@ export function GallerySection() {
         {/* Bento Grid - Photos */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[260px]">
           {/* Large Image - Neon studio shot, spans 2 cols, 2 rows */}
-          <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group">
+          <button
+            type="button"
+            onClick={() =>
+              setSelectedPhoto({
+                src: "/images/galeria-clase-grupal-neon.jpeg",
+                alt: "Clase grupal en Teteo Studio con neon amarillo",
+                title: "Teteo Studio",
+              })
+            }
+            className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden group cursor-zoom-in"
+          >
             <img
               src="/images/galeria-clase-grupal-neon.jpeg"
               alt="Clase grupal en Teteo Studio con neon amarillo"
@@ -42,12 +112,22 @@ export function GallerySection() {
                 Teteo Studio
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Standing choreography class */}
-          <div className="relative rounded-2xl overflow-hidden group">
+          <button
+            type="button"
+            onClick={() =>
+              setSelectedPhoto({
+                src: "/images/galeria-halima-session.jpeg",
+                alt: "Alumnas practicando coreografía de pie en Teteo Studio",
+                title: "Coreografía",
+              })
+            }
+            className="relative rounded-2xl overflow-hidden group cursor-zoom-in"
+          >
             <img
-              src="/images/galeria-coreografia-pie.jpeg"
+              src="/images/galeria-halima-session.jpeg"
               alt="Alumnas practicando coreografía de pie en Teteo Studio"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
@@ -56,24 +136,44 @@ export function GallerySection() {
                 Coreografía
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Floor stretching */}
-          <div className="relative rounded-2xl overflow-hidden group">
+          <button
+            type="button"
+            onClick={() =>
+              setSelectedPhoto({
+                src: "/images/galeria-nerea-session.jpeg",
+                alt: "Alumnas realizando ejercicios de suelo en Teteo Studio",
+                title: "Twerk",
+              })
+            }
+            className="relative rounded-2xl overflow-hidden group cursor-zoom-in"
+          >
             <img
-              src="/images/galeria-trabajo-suelo.jpeg"
+              src="/images/galeria-nerea-session.jpeg"
               alt="Alumnas realizando ejercicios de suelo en Teteo Studio"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-background/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
               <span className="text-foreground font-semibold text-sm">
-                Trabajo de suelo
+                Twerk
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Arms raised stretching - spans 2 cols */}
-          <div className="col-span-2 relative rounded-2xl overflow-hidden group">
+          <button
+            type="button"
+            onClick={() =>
+              setSelectedPhoto({
+                src: "/images/galeria-calentamiento-brazos.jpeg",
+                alt: "Alumnas estirando con brazos levantados frente al espejo",
+                title: "Calentamiento",
+              })
+            }
+            className="col-span-2 relative rounded-2xl overflow-hidden group cursor-zoom-in"
+          >
             <img
               src="/images/galeria-calentamiento-brazos.jpeg"
               alt="Alumnas estirando con brazos levantados frente al espejo"
@@ -84,7 +184,7 @@ export function GallerySection() {
                 Calentamiento
               </span>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* Video Section */}
@@ -101,37 +201,50 @@ export function GallerySection() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[260px]">
             {videos.map((video) => (
               <div
                 key={video.id}
-                className="relative aspect-9/16 md:aspect-video rounded-2xl overflow-hidden bg-card border border-border group"
+                className={`relative rounded-2xl overflow-hidden bg-card border border-border group ${video.gridClass}`}
+                onMouseEnter={() => setHoveredVideoId(video.id)}
+                onMouseLeave={() => setHoveredVideoId(null)}
               >
-                {video.src ? (
-                  <video
-                    src={video.src}
-                    poster={video.poster}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="h-full w-full object-cover"
-                  >
-                    <track kind="captions" />
-                  </video>
-                ) : (
-                  /* Placeholder for when videos are not yet available */
-                  <div className="h-full w-full flex flex-col items-center justify-center gap-4 bg-card">
-                    <div className="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 border-2 border-primary/30 group-hover:bg-primary/20 transition-colors duration-300">
-                      <Play className="h-7 w-7 text-primary ml-1" />
-                    </div>
-                    <span className="text-sm text-muted-foreground font-medium">
-                      {video.title}
-                    </span>
-                    <span className="text-xs text-muted-foreground/60">
-                      Próximamente
-                    </span>
+                <video
+                  src={video.src}
+                  controls={hoveredVideoId === video.id}
+                  playsInline
+                  preload="metadata"
+                  onPlay={(event) =>
+                    stopOtherVideos(video.id, event.currentTarget)
+                  }
+                  onPause={() =>
+                    setPlayingVideos((prev) => ({ ...prev, [video.id]: false }))
+                  }
+                  onEnded={() =>
+                    setPlayingVideos((prev) => ({ ...prev, [video.id]: false }))
+                  }
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+
+                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/80 via-background/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div
+                  className={`pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
+                    playingVideos[video.id]
+                      ? "opacity-0"
+                      : "opacity-70 group-hover:opacity-100"
+                  }`}
+                >
+                  <div className="flex items-center justify-center h-14 w-14 rounded-full bg-background/70 border border-border">
+                    <Play className="h-6 w-6 text-primary ml-0.5" />
                   </div>
-                )}
+                </div>
+
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                  <span className="text-foreground font-semibold text-sm md:text-base">
+                    {video.title}
+                  </span>
+                </div>
               </div>
             ))}
           </div>
@@ -173,6 +286,30 @@ export function GallerySection() {
             </span>
           </div>
         </div>
+
+        <Dialog
+          open={Boolean(selectedPhoto)}
+          onOpenChange={(open) => {
+            if (!open) {
+              setSelectedPhoto(null);
+            }
+          }}
+        >
+          <DialogContent className="max-w-5xl p-2 sm:max-w-5xl" showCloseButton>
+            {selectedPhoto && (
+              <>
+                <DialogTitle className="sr-only">
+                  {selectedPhoto.title}
+                </DialogTitle>
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.alt}
+                  className="w-full max-h-[80vh] object-contain rounded-md"
+                />
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
