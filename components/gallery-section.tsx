@@ -11,7 +11,7 @@ type GalleryPhoto = {
 };
 
 const VIDEO_BASE_URL =
-  "https://boundary-minimum-legend-stakeholders.trycloudflare.com";
+  "https://tracy-decide-pal-knit.trycloudflare.com";
 
 const videos = [
   {
