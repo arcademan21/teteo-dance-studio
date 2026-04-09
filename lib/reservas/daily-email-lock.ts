@@ -4,7 +4,20 @@ import path from "node:path";
 type DailyEmailLocks = Record<string, string>;
 const BLOCK_WINDOW_MS = 24 * 60 * 60 * 1000;
 
-const DATA_DIR = path.join(process.cwd(), ".data");
+function getDataDir(): string {
+  if (process.env.RESERVA_LOCKS_DIR) {
+    return process.env.RESERVA_LOCKS_DIR;
+  }
+
+  // In Vercel serverless, /tmp is writable while /var/task is read-only.
+  if (process.env.VERCEL) {
+    return path.join("/tmp", ".data");
+  }
+
+  return path.join(process.cwd(), ".data");
+}
+
+const DATA_DIR = getDataDir();
 const LOCKS_FILE = path.join(DATA_DIR, "reserva-email-locks.json");
 
 async function readLocks(): Promise<DailyEmailLocks> {

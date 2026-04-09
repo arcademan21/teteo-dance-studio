@@ -56,7 +56,12 @@ export async function POST(request: Request) {
       );
     }
 
-    await blockEmailForToday(formData.email);
+    try {
+      await blockEmailForToday(formData.email);
+    } catch (lockError) {
+      // Do not fail a successful reservation if lock persistence is unavailable.
+      console.warn("No se pudo persistir el bloqueo diario", lockError);
+    }
 
     return NextResponse.json({
       success: true,
